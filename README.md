@@ -57,3 +57,19 @@ If you have completed Parts 1 & 2 feel free to move on to these stretch goals.
 #### Turn your Saved Movie list into `Link`s
 
 * [ ] Your list of saved movies should be links to the movie itself. Study and understand what the `saveMovie` function is doing.
+
+## Rive animations
+
+The UI uses [Rive](https://rive.app) via `@rive-app/react-canvas`. The `.riv` files live in `public/rive/`, and the runtime's `.wasm` is bundled locally (`src/rive/setupRive.js`), so nothing loads from a CDN.
+
+| Where | File / state machine | Inputs it drives |
+| --- | --- | --- |
+| Teddy in the Saved Movies bar (`src/rive/TeddyContext.js`) | `teddy.riv` / `Login Machine` | `isChecking` + `numLook`: eyes follow your pointer across the movie list<br>`isHandsUp`: covers his eyes when you hover a movie scoring under 80<br>`trigSuccess`: cheers when you save a movie<br>`trigFail`: pouts if it's already saved |
+| Critic avatar on each card (`src/rive/CriticAvatar.js`) | `avatars.riv` / `avatar`, `avatar2`, `avatar3` | `isHappy` (metascore 90+), `isSad` (under 80) |
+
+### Credits
+
+Both files come from the Rive Community. See each page for its author and license:
+
+* `teddy.riv`: "Animated Login Screen", https://public.rive.app/community/runtime-files/2244-4463-animated-login-screen.riv
+* `avatars.riv`: "Avatar Pack Use Case", https://public.rive.app/community/runtime-files/2195-4346-avatar-pack-use-case.riv

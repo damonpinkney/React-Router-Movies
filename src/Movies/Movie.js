@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import CriticAvatar from '../rive/CriticAvatar';
 
-export default function Movie({ movies, addToSavedList }) {
+export default function Movie({ saved, addToSavedList }) {
   const [movie, setMovie] = useState();
   const { id } = useParams();
 
@@ -26,10 +27,12 @@ export default function Movie({ movies, addToSavedList }) {
   }
 
   const { title, director, metascore, stars } = movie;
+  const isSaved = saved.includes(movie.id);
 
   return (
     <div className="save-wrapper">
       <div className="movie-card">
+        <CriticAvatar key={movie.id} id={movie.id} metascore={metascore} />
         <h2>{title}</h2>
         <div className="movie-director">
           Director: <em>{director}</em>
@@ -44,7 +47,13 @@ export default function Movie({ movies, addToSavedList }) {
           </div>
         ))}
       </div>
-      <div onClick={saveMovie} className="save-button">Save</div>
+      <button
+        type="button"
+        onClick={saveMovie}
+        className={isSaved ? 'save-button saved' : 'save-button'}
+      >
+        {isSaved ? 'Saved ✓' : 'Save'}
+      </button>
     </div>
   );
 }

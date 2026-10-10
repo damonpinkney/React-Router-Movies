@@ -10,10 +10,41 @@ body {
   border: 0;
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
     0 2px 4px rgba(0, 0, 0, 0.24);
-  padding: 1rem;
+  padding: 1rem 112px 1rem 1rem;
   cursor: pointer;
   position: relative;
   margin: 1rem auto;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.movie-list {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.movie-list .movie-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, 0.12),
+    0 6px 12px rgba(0, 0, 0, 0.24);
+}
+
+/* Rive canvases size themselves to their container, so give it a size */
+.critic-avatar {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  width: 72px;
+  height: 72px;
+  transform: translateY(-50%);
+}
+
+.teddy {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #d5e2ea;
 }
 
 .movie-director {
@@ -28,20 +59,49 @@ body {
     0 2px 4px rgba(0, 0, 0, 0.24);
   padding: 1rem;
   cursor: pointer;
-  position: relative;
   margin: 1rem auto;
   width: 75%;
+  /* Stick to the top so Teddy can watch you scroll through the list */
+  position: sticky;
+  top: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  box-sizing: border-box;
 }
 
 .saved-list h3 {
-  margin-right: 10px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.saved-movies {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
 .saved-movie {
-  margin: 0 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.saved-movie:hover {
+  background-color: #bbdefb;
+}
+
+.saved-empty {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
 }
 .saved-active {
   color: blue;
@@ -60,9 +120,15 @@ body {
   border: 1px solid grey;
   padding: 5px 10px;
   background-color: lightseagreen;
+  font: inherit;
+  cursor: pointer;
 }
 .save-button:hover {
   background-color: green;
+  color: white;
+}
+.save-button.saved {
+  background-color: #2e7d32;
   color: white;
 }
 
